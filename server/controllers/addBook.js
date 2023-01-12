@@ -1,21 +1,36 @@
 import sql from '../../db/db.js';
+import download from 'image-downloader';
+import path from 'path';
+import fs from 'fs';
+import downloadImage from './download.js';
 
 const addBook = async (req, res, next) => {
-  let title = req.body.title;
-  let cover_url = req.body.cover_url;
-  let isbn = Number(req.body.isbn);
-  let author = req.body.author;
-  let published_year = Number(req.body.published_year);
+  console.log(req.body);
+  let title = req.body.data.title;
+  let cover_url = req.body.data.cover_url;
+  let olid = req.body.data.olid;
+  let author = req.body.data.author[0] ? req.body.data.author[0] : 'unknown';
+  let published_year = Number(req.body.data.published_year);
 
-  await sql`INSERT INTO books (title, cover_url, isbn, author, published_year) VALUES (
+  // let download_options = {
+  //   url: cover_url,
+  //   filepath: `/${olid}.jpg`
+  // }
+
+  // await downloadImage(download_options);
+
+  let id = await sql`INSERT INTO books (title, cover_url, olid, author, published_year, num_of_quotes) VALUES (
     ${title},
     ${cover_url},
-    ${isbn},
+    ${olid},
     ${author},
-    ${published_year}
-  );`;
+    ${published_year},
+    0
+  ) RETURNING id;`;
 
-  res.status(201).send();
+
+
+  res.status(201).send(id[0]);
 }
 
 export default addBook;
