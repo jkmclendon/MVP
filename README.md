@@ -1,6 +1,6 @@
 # QuoteStore - Your Personal Book Quote Collection
 
-QuoteStore is a web-based platform for book lovers to store their favorite quotes from the books they've read. Built using React, Express.js, and PostgreSQL, QuoteStore allows users to add quotes from their favorite books, see the cover of the books, and view a random quote from their collection.
+QuoteStore is a web-based platform for book lovers to store their favorite quotes from the books they've read. Built using React, Express.js, axios, MaterialUI, and PostgreSQL, QuoteStore allows users to add quotes from their favorite books, see the cover of the books, and view a random quote from their collection.
 
 ![QuoteStore](https://www.julianmclendon.com/images/quote_store.jpg)
 
